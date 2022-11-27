@@ -15,6 +15,9 @@ args = parser.parse_args()
 
 config_ = getattr(config, args.config)
 
+if "datasphere" in args.config:
+    sys.path.append("/home/jupyter/.local/bin")
+
 train_config = config_.TrainConfig()
 data_dir = os.path.abspath(train_config.data_dir)
 

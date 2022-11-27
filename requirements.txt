@@ -1,0 +1,6 @@
+torchaudio
+wandb
+gdown
+unidecode
+inflect
+librosa

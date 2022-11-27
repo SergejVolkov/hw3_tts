@@ -1,4 +1,5 @@
 torchaudio
+seaborn
 wandb
 gdown
 unidecode

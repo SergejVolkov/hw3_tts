@@ -1,5 +1,6 @@
 import argparse
 
+import os
 import torch
 from torch.utils.data import DataLoader
 from torch.optim.lr_scheduler import OneCycleLR
@@ -88,6 +89,8 @@ waveglow_model = utils.get_WaveGlow(train_config.waveglow_path)
 waveglow_model = waveglow_model.cuda()
 
 utils.cleanup_waveglow_files()
+
+os.makedirs(train_config.checkpoint_path, exist_ok=True)
 
 train(train_config, training_loader, model, optimizer, scheduler,
       fastspeech_loss, logger, waveglow_model, args.resume_step)

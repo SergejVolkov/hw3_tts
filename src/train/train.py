@@ -83,7 +83,7 @@ def train(train_config, training_loader, model, optimizer, scheduler,
 
                 if current_step % train_config.save_step == 0:
                     if (train_config.max_checkpoints is not None and
-                        n_checkpoints >= train_config.max_checkpoints):
+                            n_checkpoints >= train_config.max_checkpoints):
                         os.remove(os.path.join(
                             train_config.checkpoint_path,
                             "checkpoint_%d.pth.tar" %
@@ -105,6 +105,6 @@ def train(train_config, training_loader, model, optimizer, scheduler,
                                        train_config.text_cleaners,
                                        train_config.device)
                     model.train()
-                    for i, (audio, mel) in enumerate(zip(result)):
+                    for i, (audio, mel) in enumerate(zip(*result)):
                         logger.add_audio(f"a_sample{i}", audio, sample_rate=22050)
-                        logger.add_image(f"mel_sample{i}", mel[::-1].detach().cpu())
+                        logger.add_image(f"mel_sample{i}", mel.detach().cpu().numpy()[::-1].T)

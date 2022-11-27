@@ -44,6 +44,6 @@ for i in tqdm(range(n_samples), desc="Generating profiles"):
     idxs = np.argmax((cummax - mel) > mel.std() * args.peak_height, axis=-1)
     maxs = np.take_along_axis(cummax, np.expand_dims(idxs, axis=-1), axis=-1)
     peak = np.argmax(cummax == maxs, axis=-1)
-    smoothed = conv(torch.tensor(peak, dtype=torch.float32).unsqueeze(0)).squeeze().numpy()
+    smoothed = conv(torch.tensor(peak, dtype=torch.float32).view(1, 1, -1)).squeeze().numpy()
 
     np.save(train_config.pitch_path + f"/{i}.npy", smoothed)

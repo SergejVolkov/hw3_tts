@@ -8,5 +8,7 @@ from .default import MelSpectrogramConfig, FastSpeechConfig
 class TrainConfig(default.TrainConfig):
     data_dir = "./data"
     device = "cuda:0"
+    
+    max_checkpoints = 30
 
-    batch_size = 32
+    batch_size = 64

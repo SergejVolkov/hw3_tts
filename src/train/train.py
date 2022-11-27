@@ -8,8 +8,7 @@ from src.inference import inference
 
 
 def train(train_config, training_loader, model, optimizer, scheduler,
-          fastspeech_loss, logger, waveglow_model, current_step = 0,
-          max_checkpoints = 60):
+          fastspeech_loss, logger, waveglow_model, current_step = 0):
     total_steps = train_config.epochs * len(training_loader) * \
                   train_config.batch_expand_size
     tqdm_bar = tqdm(total=total_steps - current_step)
@@ -83,7 +82,8 @@ def train(train_config, training_loader, model, optimizer, scheduler,
                 scheduler.step()
 
                 if current_step % train_config.save_step == 0:
-                    if n_checkpoints >= max_checkpoints:
+                    if (train_config.max_checkpoints is not None and
+                        n_checkpoints >= train_config.max_checkpoints):
                         os.remove(os.path.join(
                             train_config.checkpoint_path,
                             "checkpoint_%d.pth.tar" %

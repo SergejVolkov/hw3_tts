@@ -67,6 +67,8 @@ class TrainConfig:
     text_cleaners = ["english_cleaners"]
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    
+    max_checkpoints = None
 
     batch_size = 16
     epochs = 2000

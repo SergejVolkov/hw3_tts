@@ -9,7 +9,7 @@ sys.path.append(".")
 from src import config
 
 parser = argparse.ArgumentParser(description=".")
-parser.add_argument("config", nargs="?", metavar="CONFIG", type=str,
+parser.add_argument("-c", "--config", metavar="CONFIG", type=str,
                     default="default", help="Config filename (default: %(default)s).")
 args = parser.parse_args()
 

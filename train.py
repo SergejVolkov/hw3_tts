@@ -24,7 +24,7 @@ utils.cleanup_waveglow_warnings()
 
 
 parser = argparse.ArgumentParser(description="Train FastSpeech 2 TTS model.")
-parser.add_argument("config", nargs="?", metavar="CONFIG", type=str,
+parser.add_argument("-c", "--config", metavar="CONFIG", type=str,
                     default="default", help="Config filename (default: %(default)s).")
 parser.add_argument("-r", "--resume_step", metavar="INT", type=int,
                     default=0, help="Resume training from checkpoint.")

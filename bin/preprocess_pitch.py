@@ -13,7 +13,7 @@ sys.path.append(".")
 from src import config
 
 parser = argparse.ArgumentParser(description="Generate and store pitch profiles.")
-parser.add_argument("config", nargs="?", metavar="CONFIG", type=str,
+parser.add_argument("-c", "--config", metavar="CONFIG", type=str,
                     default="default", help="Config filename (default: %(default)s).")
 parser.add_argument("-w", "--window_size", metavar="INT", type=int,
                     default=5, help="Sliding window size for smoothing (default: %(default)s).")

@@ -8,11 +8,13 @@ from src.inference import inference
 
 
 def train(train_config, training_loader, model, optimizer, scheduler,
-          fastspeech_loss, logger, waveglow_model, current_step=0):
+          fastspeech_loss, logger, waveglow_model, current_step = 0,
+          max_checkpoints = 60):
     total_steps = train_config.epochs * len(training_loader) * \
                   train_config.batch_expand_size
     tqdm_bar = tqdm(total=total_steps - current_step)
 
+    n_checkpoints = 0
     for epoch in range(train_config.epochs):
         for i, batchs in enumerate(training_loader):
             # real batch start here
@@ -81,12 +83,22 @@ def train(train_config, training_loader, model, optimizer, scheduler,
                 scheduler.step()
 
                 if current_step % train_config.save_step == 0:
+                    if n_checkpoints >= max_checkpoints:
+                        os.remove(os.path.join(
+                            train_config.checkpoint_path,
+                            "checkpoint_%d.pth.tar" %
+                            (current_step - train_config.save_step * n_checkpoints)
+                        ))
+                    else:
+                        n_checkpoints += 1
+
                     torch.save({
                         "model": model.state_dict(),
                         "optimizer": optimizer.state_dict(),
                         "scheduler": scheduler.state_dict()
                     }, os.path.join(train_config.checkpoint_path,
                                     "checkpoint_%d.pth.tar" % current_step))
+
                     model.eval()
                     result = inference(train_config.tests_path,
                                        model, waveglow_model,

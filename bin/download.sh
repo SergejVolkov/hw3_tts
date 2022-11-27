@@ -15,8 +15,10 @@ echo "download Waveglow"
 gdown https://drive.google.com/u/0/uc?id=1WsibBTsuRg_SF2Z6L6NFRTT-NjEy1oTx
 mv waveglow_256channels_ljs_v2.pt waveglow_256channels.pt
 
+#download mels
+echo "download mels"
 gdown https://drive.google.com/u/0/uc?id=1cJKJTmYd905a-9GFoo5gKjzhKjUVj83j
-tar -xvf mel.tar.gz
+tar -xvf mel.tar.gz >> /dev/null
 echo $(ls mels | wc -l)
 mv mels "$1/mels"
 

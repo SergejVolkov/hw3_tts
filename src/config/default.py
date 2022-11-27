@@ -71,7 +71,7 @@ class TrainConfig:
     max_checkpoints = None
 
     batch_size = 16
-    epochs = 2000
+    epochs = 390
     n_warm_up_step = 4000
 
     learning_rate = 1e-3

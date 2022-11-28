@@ -50,20 +50,16 @@ waveglow_model = waveglow_model.cuda()
 
 utils.cleanup_waveglow_files()
 
-os.makedirs("results", exist_ok=True)
+os.makedirs("results/" + args.checkpoint, exist_ok=True)
 
 
 def inference2file(pname = None, **params):
     audios = inference(texts_path, model, waveglow_model,
                        train_config.text_cleaners,
-                       train_config.device, params)[0]
-    if pname is None:
-        iter = enumerate(audios)
-    else:
-        iter = tqdm(enumerate(audios), desc=pname)
-    for i, audio in iter:
+                       train_config.device, pname, params)[0]
+    for i, audio in enumerate(audios):
         audio *= 32767 / torch.abs(audio).max()  # int16 max
-        filename = f"./results/sample{i}"
+        filename = f"./results/{args.checkpoint}/sample{i}"
         for param, value in params.items():
             filename += f"_{param[0]}{value}"
         filename += ".wav"

@@ -24,6 +24,7 @@ data_dir = os.path.abspath(train_config.data_dir)
 checkpoint_path = os.path.abspath(train_config.checkpoint_path)
 results_path = os.path.abspath("./results")
 
+os.makedirs("results", exist_ok=True)
 os.chdir("./resources")
 
 subprocess.run(["../bin/download.sh", data_dir,

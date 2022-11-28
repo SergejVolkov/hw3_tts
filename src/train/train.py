@@ -106,5 +106,5 @@ def train(train_config, training_loader, model, optimizer, scheduler,
                                        train_config.device)
                     model.train()
                     for i, (audio, mel) in enumerate(zip(*result)):
-                        logger.add_audio(f"a_sample{i}", audio, sample_rate=22050)
-                        logger.add_image(f"mel_sample{i}", mel.detach().cpu().numpy()[::-1].T)
+                        logger.add_audio(f"a_sample{i}", audio.detach().cpu().short(), sample_rate=22050)
+                        logger.add_image(f"mel_sample{i}", mel.detach().cpu().numpy()[::-1])

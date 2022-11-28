@@ -58,7 +58,7 @@ class TrainConfig:
 
     logger_path = "./logger"
 
-    checkpoint_path = "./resources/checkpoints"
+    checkpoint_path = "./resources/chkpoints"
     tests_path = "./resources/tests.txt"
     waveglow_path = "./resources"
 

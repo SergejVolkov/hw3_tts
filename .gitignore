@@ -4,7 +4,7 @@
 __pycache__
 *.patch
 data
-resources/checkpoints
+resources/chkpoints
 resources/waveglow_256channels.pt
 results
 wandb

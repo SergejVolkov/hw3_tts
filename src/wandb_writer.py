@@ -16,7 +16,7 @@ class WanDBWriter:
         wandb.init(
             project=getattr(config, 'wandb_project'),
             config=config,
-            resume=None
+            resume=resume
         )
         self.wandb = wandb
 

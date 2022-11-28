@@ -111,5 +111,4 @@ def train(train_config, training_loader, model, optimizer, scheduler,
 
     torch.save({
         "model": model.state_dict()
-    }, os.path.join(train_config.checkpoint_path,
-                    "final_%d.pth.tar" % current_step))
+    }, os.path.join(train_config.checkpoint_path, "final_model.pth.tar"))

@@ -13,7 +13,7 @@ mv train.txt "$1"
 #download Waveglow
 echo "download Waveglow"
 gdown https://drive.google.com/u/0/uc?id=1WsibBTsuRg_SF2Z6L6NFRTT-NjEy1oTx
-mv waveglow_256channels_ljs_v2.pt waveglow_256channels.pt
+mv waveglow_256channels_ljs_v2.pt "$2/waveglow_256channels.pt"
 
 #download mels
 echo "download mels"
@@ -27,3 +27,12 @@ echo "download alignments"
 wget https://github.com/xcmyz/FastSpeech/raw/master/alignments.zip -o /dev/null
 unzip alignments.zip >> /dev/null
 mv alignments "$1/alignments"
+
+#download checkpoint
+gdown https://drive.google.com/u/0/uc?id=1VVyVwQxDtKyWCvpMgI069V5tZJRIuKAO
+mv final_model.pth.tar "$2"
+
+#download results
+gdown https://drive.google.com/u/0/uc?id=1YusPal6ao80Ou8sRSNZSEAljOA7gmMSc
+unzip final_model.zip >> /dev/null
+mv final_model "$3/final_model"

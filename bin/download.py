@@ -21,7 +21,10 @@ if "datasphere" in args.config:
 
 train_config = config_.TrainConfig()
 data_dir = os.path.abspath(train_config.data_dir)
+checkpoint_path = os.path.abspath(train_config.checkpoint_path)
+results_path = os.path.abspath("./results")
 
 os.chdir("./resources")
 
-subprocess.run(["../bin/download.sh", data_dir], env=env)
+subprocess.run(["../bin/download.sh", data_dir,
+                checkpoint_path, results_path], env=env)

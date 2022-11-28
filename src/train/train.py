@@ -108,3 +108,8 @@ def train(train_config, training_loader, model, optimizer, scheduler,
                     for i, (audio, mel) in enumerate(zip(*result)):
                         logger.add_audio(f"a_sample{i}", audio.detach().cpu().short(), sample_rate=22050)
                         logger.add_image(f"mel_sample{i}", mel.detach().cpu().numpy()[::-1])
+
+    torch.save({
+        "model": model.state_dict()
+    }, os.path.join(train_config.checkpoint_path,
+                    "final_%d.pth.tar" % current_step))

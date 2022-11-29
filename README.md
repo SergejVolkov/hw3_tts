@@ -20,9 +20,13 @@ If you use Yandex DataSphere, specify the config
 
 **One may use** `datasphere.ipynb` **notebook that contains all necessary commands to reproduce the results of the project.**
 
+Generate pitch profiles required for training with
+
+`python3 bin/preprocess_pitch.py [-c datasphere]`
+
 ### Training
 
-Once the resources are downloaded, start the training with
+Once the resources are ready, start the training with
 
 `python3 train.py`
 
@@ -36,11 +40,7 @@ for DataSphere `g1.1` configuration.
 
 Use
 
-`python3 inference.py final_model`
-
-or
-
-`python3 inference.py final_model -c datasphere`
+`python3 inference.py final_model [-c datasphere]`
 
 to generate audio files with the following configurations:
 

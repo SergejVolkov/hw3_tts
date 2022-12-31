@@ -3,8 +3,8 @@
 .ipynb_checkpoints
 __pycache__
 *.patch
-data
-resources/chkpoints
-resources/waveglow_256channels.pt
-results
-wandb
+/data
+/resources/chkpoints
+/resources/waveglow_256channels.pt
+/results
+/wandb
